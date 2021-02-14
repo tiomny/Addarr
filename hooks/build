@@ -1,11 +1,10 @@
 #!/bin/sh
 echo "GITHUB_REPOSITORY $GITHUB_REPOSITORY"
-echo "GITHUB_REPOSITORY $(GITHUB_REPOSITORY)"
 echo "REPOSITORY $REPOSITORY"
 echo "IMAGE_TAG $IMAGE_TAG"
 echo "IMAGE_NAME $IMAGE_NAME"
-echo "GITHUB_USERNAME $GITHUB_USERNAME"
-echo "env_vars $env_vars"
+printenv
+env
 
 #docker buildx create --use
 #docker buildx build \
