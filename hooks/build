@@ -1,0 +1,9 @@
+echo "GITHUB_REPOSITORY $GITHUB_REPOSITORY"
+echo "IMAGE_NAME $IMAGE_NAME"
+echo "github ${{ github.event.repository.name }}"
+docker buildx create --use
+docker buildx build \
+  --progress=plain \
+  --platform="linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7,linux/arm/v6" \
+  --tag $GITHUB_REPOSITORY
+   .
