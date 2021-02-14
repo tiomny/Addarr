@@ -1,8 +1,6 @@
 #!/bin/sh
-sudo apt install -y qemu-user-static binfmt-support
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-docker buildx create --name mybuild # name as you like
-docker buildx use mybuild
+docker buildx create --name multiarch --driver docker-container --use
 docker buildx inspect --bootstrap
 docker buildx build --progress plain --platform linux/arm64 --tag $IMAGE_NAME --push .
 #,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7,linux/arm/v6
