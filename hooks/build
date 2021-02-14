@@ -1,3 +1,4 @@
+#!/bin/sh
 echo "GITHUB_REPOSITORY $GITHUB_REPOSITORY"
 echo "IMAGE_NAME $IMAGE_NAME"
 echo "github ${{ github.event.repository.name }}"
