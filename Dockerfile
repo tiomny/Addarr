@@ -1,9 +1,7 @@
-FROM python:3.9.1
+FROM python:3.9.1-alpine
 
-ENV PATH="/usr/bin:${PATH}"
-RUN apt update
-RUN apt install -y apt-utils
-RUN apt install -y gcc musl-dev libffi-dev libssl-dev cargo rustc
+ENV PATH="/usr/local/bin:${PATH}"
+RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev cargo rust -v
 
 WORKDIR /app
 # Install requirements
