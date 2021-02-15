@@ -1,7 +1,6 @@
-FROM python:3.9.1
+FROM python:3.9.1-alpine
 
-RUN apt update
-RUN apt install -y gcc musl-dev libffi-dev libssl-dev cargo rustc
+RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev cargo rust -v
 
 WORKDIR /app
 # Install requirements
