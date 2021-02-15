@@ -1,9 +1,9 @@
 FROM python:3.9.1-alpine
 
-RUN apk add busybox-extras
+RUN apk add busybox-extras -v
 
-RUN apk upgrade
-RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev cargo rust
+RUN apk upgrade -v
+RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev cargo rust -v
 
 WORKDIR /app
 # Install requirements
