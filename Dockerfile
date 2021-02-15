@@ -1,4 +1,4 @@
-FROM python:3.9.1-alpine
+FROM python:3.6-alpine
 
 ENV PATH="/usr/local/bin:${PATH}"
 RUN apk add --no-cache busybox-extras -v
