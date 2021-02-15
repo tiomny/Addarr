@@ -1,9 +1,10 @@
-FROM python:alpine
+FROM python:3.9.1-alpine
+
+RUN apk upgrade
+RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev cargo rust
 
 WORKDIR /app
 # Install requirements
-RUN apk upgrade
-RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev cargo rust
 # Copy files to container
 COPY . /app
 # Install ans build Addarr requirements, make symlink to redirect logs to stdout
