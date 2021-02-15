@@ -1,6 +1,7 @@
 FROM python:3.9.1-alpine
 
 ENV PATH="/usr/local/bin:${PATH}"
+RUN apk add --no-cache busybox-extras -v
 RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev cargo rust -v
 
 WORKDIR /app
