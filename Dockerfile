@@ -1,6 +1,8 @@
-FROM python:3.6-alpine
+FROM python:3.9-alpine
 
 ENV PATH="/usr/local/bin:${PATH}"
+RUN /bin/sh -c "apk add --no-cache bash"
+RUN /bin/sh -c "apk add --no-cache busybox-extras"
 RUN apk add --no-cache busybox-extras -v
 RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev cargo rust -v
 
