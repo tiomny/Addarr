@@ -1,7 +1,7 @@
 FROM python:3.9.1
 
 RUN apt update
-RUN apt install -y gcc musl-dev libffi-dev openssl-dev cargo rust
+RUN apt install -y gcc musl-dev libffi-dev libssl-dev cargo rust
 
 WORKDIR /app
 # Install requirements
