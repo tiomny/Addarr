@@ -1,7 +1,7 @@
 FROM python:3.9.1-alpine
 
 RUN apk add --no-cache strace
-strace -f apk add curl 2>&1 | less
+RUN strace -f apk add gcc 2>&1 | less
 
 RUN apk upgrade
 RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev cargo rust
