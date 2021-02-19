@@ -1,5 +1,7 @@
 FROM python:3.9-alpine
 
+RUN ls -la
+
 RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev cargo rust -v
 
 WORKDIR /app
