@@ -45,14 +45,14 @@ def main():
     auth_handler_command = CommandHandler(config["entrypointAuth"], authentication)
     auth_handler_text = MessageHandler(
                             Filters.regex(
-                                re.compile(r"" + config["entrypointAuth"] + "", re.IGNORECASE)
+                                re.compile(r"^" + config["entrypointAuth"] + "$", re.IGNORECASE)
                             ),
                             authentication,
                         )
     allSeries_handler_command = CommandHandler(config["entrypointAllSeries"], allSeries)
     allSeries_handler_text = MessageHandler(
                             Filters.regex(
-                                re.compile(r"" + config["entrypointAllSeries"] + "", re.IGNORECASE)
+                                re.compile(r"^" + config["entrypointAllSeries"] + "$", re.IGNORECASE)
                             ),
                             allSeries,
                         )
@@ -63,7 +63,7 @@ def main():
             CommandHandler(transcript["Serie"], startSerieMovie),
             MessageHandler(
                 Filters.regex(
-                    re.compile(r"" + config["entrypointAdd"] + "", re.IGNORECASE)
+                    re.compile(r'^' + config["entrypointAdd"] + '$', re.IGNORECASE)
                 ),
                 startSerieMovie,
             ),
@@ -78,14 +78,19 @@ def main():
                 CallbackQueryHandler(searchSerieMovie, pattern=f'^({transcript["Movie"]}|{transcript["Serie"]})$')
             ],
             GIVE_OPTION: [
-                MessageHandler(Filters.regex(f'({transcript["Add"]})'), pathSerieMovie),
                 CallbackQueryHandler(pathSerieMovie, pattern=f'({transcript["Add"]})'),
                 MessageHandler(
-                    Filters.regex(f'({transcript["Next result"]})'), nextOption
+                    Filters.regex(f'^({transcript["Add"]})$'), 
+                    pathSerieMovie
                 ),
                 CallbackQueryHandler(nextOption, pattern=f'({transcript["Next result"]})'),
                 MessageHandler(
-                    Filters.regex(f'({transcript["New"]})'), startSerieMovie
+                    Filters.regex(f'^({transcript["Next result"]})$'), 
+                    nextOption
+                ),
+                MessageHandler(
+                    Filters.regex(f'^({transcript["New"]})$'), 
+                    startSerieMovie
                 ),
                 CallbackQueryHandler(startSerieMovie, pattern=f'({transcript["New"]})'),
             ],
@@ -130,6 +135,9 @@ def main():
     dispatcher.add_handler(allSeries_handler_command)
     dispatcher.add_handler(allSeries_handler_text)
     dispatcher.add_handler(addMovieserie_handler)
+
+    help_handler_command = CommandHandler(config["entrypointHelp"], help)
+    dispatcher.add_handler(help_handler_command)
 
     logger.info(transcript["Start chatting"])
     updater.start_polling()
@@ -187,6 +195,8 @@ def choiceSerieMovie(update, context):
             authentication(update, context) == "added"
         ):  # To also stop the beginning command
             return ConversationHandler.END
+    elif update.message.text.lower() == "/stop".lower() or update.message.text.lower() == "stop".lower():
+        return stop(update, context)
     else:
         if update.message is not None:
             reply = update.message.text
@@ -509,6 +519,20 @@ def getService(context):
         raise ValueError(
             f"Cannot determine service based on unknown or missing choice: {context.user_data.get('choice')}."
         )
+
+def help(update, context):
+    context.bot.send_message(
+        chat_id=update.effective_message.chat_id, text=transcript["Help"].format(
+            config["entrypointHelp"],
+            config["entrypointAuth"],
+            config["entrypointAdd"],
+            'serie',
+            'movie',
+            config["entrypointAllSeries"],
+            config["entrypointTransmission"],
+        )
+    )
+    return ConversationHandler.END
 
 
 def clearUserData(context):
