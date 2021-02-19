@@ -2,7 +2,7 @@ version: '3'
 services:
   addarr:
     container_name: addarr
-    image: waterboy1602/addarr
+    image: tiomny/addarr
     restart: unless-stopped
     network_mode: host
     volumes:

@@ -1,6 +1,6 @@
 # ADDARR
-[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/waterboy1602/addarr)](https://hub.docker.com/r/waterboy1602/addarr)
-[![Docker Pulls](https://img.shields.io/docker/pulls/waterboy1602/addarr)](https://hub.docker.com/r/waterboy1602/addarr)
+[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/tiomny/addarr)](https://hub.docker.com/r/tiomny/addarr)
+[![Docker Pulls](https://img.shields.io/docker/pulls/tiomny/addarr)](https://hub.docker.com/r/tiomny/addarr)
 
 This is a Telegram Bot made to add series to [Sonarr](https://github.com/Sonarr/Sonarr) or movies to [Radarr](https://github.com/Radarr/Radarr) with a couple of commands. You can also communicate with your [Transmission](https://transmissionbt.com/) service to change its download speed. The bot has also recently changed from a ReplyKeyboard to an InlineKeboard, as you can see in the [screenshots](#screenshots).
 ## FEATURES
@@ -34,11 +34,11 @@ An example of the config file (`config_example.yaml`) can be found in this repos
 There is a functionality to only let admins use the `transmission` command. Before you can use this, you should enable it in the config file `config.yaml`. Then you need to add the admins to `admin.txt`. You can add the `username` or `id` of the user. Every added user should be on a new line to prevent errors.
 
 ## INSTALLATION
-You can find the installation guides on the [wikipage](https://github.com/Waterboy1602/Addarr/wiki).
-- [FreeBSD](https://github.com/Waterboy1602/Addarr/wiki/Installation-on-FreeBSD)
-- [Docker](https://github.com/Waterboy1602/Addarr/wiki/Installation-on-Docker)
-- [Windows](https://github.com/Waterboy1602/Addarr/wiki/Installation-on-Windows)
-- [Linux](https://github.com/Waterboy1602/Addarr/wiki/Installation-on-Linux)
+You can find the installation guides on the [wikipage](https://github.com/tiomny/Addarr/wiki).
+- [FreeBSD](https://github.com/tiomny/Addarr/wiki/Installation-on-FreeBSD)
+- [Docker](https://github.com/tiomny/Addarr/wiki/Installation-on-Docker)
+- [Windows](https://github.com/tiomny/Addarr/wiki/Installation-on-Windows)
+- [Linux](https://github.com/tiomny/Addarr/wiki/Installation-on-Linux)
 
 ## SCREENSHOTS
 <div style="float: left">
