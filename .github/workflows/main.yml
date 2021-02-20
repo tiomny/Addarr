@@ -41,7 +41,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           file: ./Dockerfile
           push: true
-          tags: $REPO:latest
+          tags: ${{env.REPO}}:latest
 
       - 
         name: Image digest
