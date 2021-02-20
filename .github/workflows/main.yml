@@ -28,9 +28,9 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      -
-        name: Available platforms
-        run: echo ${{ steps.buildx.outputs.platforms }}
+      - name: downcase REPO
+        run: |
+          echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
 
       - 
         name: Build and push
@@ -41,7 +41,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           file: ./Dockerfile
           push: true
-          tags: ${{github.repository}}:latest
+          tags: $REPO:latest
 
       - 
         name: Image digest
